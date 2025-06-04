@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID-19 Dashboard</title>
+    <link rel="stylesheet" href="statics/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <h1>COVID-19 Dashboard</h1>
+        <div class="header-info">
+          <!-- Dark mode toggle button -->
+          <button
+            class="btn btn--outline btn--sm"
+            id="darkModeToggle"
+            title="Toggle dark mode"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Source and Last Updated Section -->
+      <section class="dashboard-meta-section">
+        <span>
+          <strong>Source:</strong>
+          <a href="https://covid19dashboard.mohfw.gov.in/" target="_blank" rel="noopener noreferrer">
+            covid19dashboard.mohfw.gov.in
+          </a>
+        </span>
+        <span> <strong>Last Updated:</strong> <span id="lastUpdated"></span> </span>
+      </section>
+
+      <!-- Country Level Summary -->
+      <section class="dashboard-section country-summary-section">
+        <h2>India - Summary</h2>
+        <div class="country-stats-grid">
+          <div class="country-stat-card confirmed">
+            <div class="country-stat-icon">
+              <i class="fas fa-viruses"></i>
+            </div>
+            <div class="country-stat-content">
+              <span class="country-stat-label">Confirmed Cases</span>
+              <span class="country-stat-value" id="countryConfirmed">
+                0 <span class="country-stat-delta" id="countryConfirmedDelta"></span>
+              </span>
+            </div>
+          </div>
+          <div class="country-stat-card active">
+            <div class="country-stat-icon">
+              <i class="fas fa-procedures"></i>
+            </div>
+            <div class="country-stat-content">
+              <span class="country-stat-label">Active Cases</span>
+              <span class="country-stat-value" id="countryActive">
+                0 <span class="country-stat-delta" id="countryActiveDelta"></span>
+              </span>
+            </div>
+          </div>
+          <div class="country-stat-card recovered">
+            <div class="country-stat-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="country-stat-content">
+              <span class="country-stat-label">Recovered</span>
+              <span class="country-stat-value" id="countryRecovered">
+                0 <span class="country-stat-delta" id="countryRecoveredDelta"></span>
+              </span>
+            </div>
+          </div>
+          <div class="country-stat-card deaths">
+            <div class="country-stat-icon">
+              <i class="fas fa-skull"></i>
+            </div>
+            <div class="country-stat-content">
+              <span class="country-stat-label">Deaths</span>
+              <span class="country-stat-value" id="countryDeaths">
+                0 <span class="country-stat-delta" id="countryDeathsDelta"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Dashboard Grid -->
+      <main class="dashboard-grid">
+        <!-- Watchlist Section -->
+        <section class="dashboard-section watchlist-section">
+          <div class="section-header">
+            <h2>My Watchlist</h2>
+            <div class="watchlist-controls">
+              <select class="form-control" id="stateSelect">
+                <option value="">Add State to Watchlist</option>
+              </select>
+              <button class="btn btn--primary btn--sm" id="addStateBtn">Add</button>
+            </div>
+          </div>
+          <div class="watchlist-content">
+            <div class="watchlist-grid" id="watchlistGrid">
+              <!-- Watchlist items will be added dynamically -->
+            </div>
+            <div class="watchlist-counter">
+              <span id="watchlistCounter">0/5 states</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Top Performers Section -->
+        <section class="dashboard-section top-performers-section">
+          <h2>Top States</h2>
+          <div class="top-performers-grid">
+            <div class="top-category">
+              <h3>Top 3 Active Cases</h3>
+              <div class="top-list" id="topActiveCases"></div>
+            </div>
+            <div class="top-category">
+              <h3>Top 3 New Cases (24hr)</h3>
+              <div class="top-list" id="topNewCases"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Deaths Tracking Section -->
+        <section class="dashboard-section deaths-section">
+          <div class="section-header">
+            <h2>Deaths in Last 24 Hours</h2>
+            <div class="sort-controls">
+              <label for="deathsSort">Sort by:</label>
+              <select class="form-control" id="deathsSort">
+                <option value="newDeaths">New Deaths (High to Low)</option>
+                <option value="deaths">Total Deaths (High to Low)</option>
+                <option value="alphabetical">State Name (A-Z)</option>
+              </select>
+            </div>
+          </div>
+          <div class="deaths-content">
+            <div class="deaths-list" id="deathsList"></div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="dashboard-footer">
+        <p>
+          Made with <span class="heart-icon">&#10084;&#65039;</span> in India<br />
+          &copy; 2025 COVID-19 Dashboard
+        </p>
+      </footer>
+    </div>
+
+    <script src="statics/app.js"></script>
+    <script src="statics/util.js"></script>
+    <!-- 100% privacy-first analytics -->
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript
+      ><img
+        src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true"
+        alt=""
+        referrerpolicy="no-referrer-when-downgrade"
+    /></noscript>
+  </body>
+</html>
