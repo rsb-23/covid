@@ -23,7 +23,7 @@ jobs:
 
       - name: Commit data if changed
         run: |
-          git add data/today.json
+          git add data/
           if ! git diff --cached --quiet; then
             git commit -m "chore: update COVID data (automated)"
             git push
