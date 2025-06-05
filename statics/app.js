@@ -59,20 +59,47 @@ class CovidDashboard {
     // Display country-level data
     const country = this.countryData;
 
+    // Elements for totals
     const countryConfirmedEl = document.getElementById("countryConfirmed");
     const countryActiveEl = document.getElementById("countryActive");
     const countryRecoveredEl = document.getElementById("countryRecovered");
     const countryDeathsEl = document.getElementById("countryDeaths");
-    const countryNewCasesEl = document.getElementById("countryNewCases");
-    const countryNewDeathsEl = document.getElementById("countryNewDeaths");
 
-    if (countryConfirmedEl) countryConfirmedEl.textContent = this.formatNumberWithCommas(country.new_positive);
-    if (countryActiveEl) countryActiveEl.textContent = this.formatNumberWithCommas(country.new_active);
-    if (countryRecoveredEl) countryRecoveredEl.textContent = this.formatNumberWithCommas(country.new_cured);
-    if (countryDeathsEl) countryDeathsEl.textContent = this.formatNumberWithCommas(country.new_death);
-    if (countryNewCasesEl)
-      countryNewCasesEl.textContent = this.formatNumberWithCommas(country.new_positive - country.positive);
-    if (countryNewDeathsEl) countryNewDeathsEl.textContent = this.formatNumberWithCommas(country.actualdeath24hrs);
+    // Elements for deltas
+    const countryConfirmedDeltaEl = document.getElementById("countryConfirmedDelta");
+    const countryActiveDeltaEl = document.getElementById("countryActiveDelta");
+    const countryRecoveredDeltaEl = document.getElementById("countryRecoveredDelta");
+    const countryDeathsDeltaEl = document.getElementById("countryDeathsDelta");
+
+    // Calculate deltas
+    const confirmedDelta = country.new_positive - country.positive;
+    const activeDelta = country.new_active - country.active;
+    const recoveredDelta = country.new_cured - country.cured;
+    const deathsDelta = country.new_death - country.death;
+
+    // Helper to format delta
+    const formatDelta = (delta) => {
+      if (typeof delta !== "number" || isNaN(delta)) return "";
+      if (delta > 0) return `(+${delta})`;
+      if (delta < 0) return `(${delta})`;
+      return "(0)";
+    };
+
+    if (countryConfirmedEl)
+      countryConfirmedEl.childNodes[0].textContent = this.formatNumberWithCommas(country.new_positive) + " ";
+    if (countryConfirmedDeltaEl) countryConfirmedDeltaEl.textContent = formatDelta(confirmedDelta);
+
+    if (countryActiveEl)
+      countryActiveEl.childNodes[0].textContent = this.formatNumberWithCommas(country.new_active) + " ";
+    if (countryActiveDeltaEl) countryActiveDeltaEl.textContent = formatDelta(activeDelta);
+
+    if (countryRecoveredEl)
+      countryRecoveredEl.childNodes[0].textContent = this.formatNumberWithCommas(country.new_cured) + " ";
+    if (countryRecoveredDeltaEl) countryRecoveredDeltaEl.textContent = formatDelta(recoveredDelta);
+
+    if (countryDeathsEl)
+      countryDeathsEl.childNodes[0].textContent = this.formatNumberWithCommas(country.new_death) + " ";
+    if (countryDeathsDeltaEl) countryDeathsDeltaEl.textContent = formatDelta(deathsDelta);
   }
 
   populateStateSelect() {
@@ -331,12 +358,21 @@ class CovidDashboard {
     }, 1000);
   }
 
-  updateLastUpdated() {
+  async updateLastUpdated() {
     const lastUpdatedElement = document.getElementById("lastUpdated");
     if (!lastUpdatedElement) return;
 
-    const now = new Date();
-    now.setHours(10, 0, 0, 0);
+    let ldate = new Date();
+    try {
+      const response = await fetch("data/today.json", { method: "HEAD" });
+      const lastModified = response.headers.get("Last-Modified");
+      if (lastModified) {
+        ldate = new Date(lastModified);
+      }
+    } catch (e) {}
+
+    // Set the time to 10:00 AM
+    ldate.setHours(10, 0, 0, 0);
     const options = {
       year: "numeric",
       month: "short",
@@ -345,7 +381,7 @@ class CovidDashboard {
       minute: "2-digit",
       hour12: true,
     };
-    lastUpdatedElement.textContent = now.toLocaleDateString("en-US", options);
+    lastUpdatedElement.textContent = ldate.toLocaleDateString("en-US", options);
   }
 
   formatNumber(num) {

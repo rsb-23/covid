@@ -14,12 +14,14 @@
         <h1>COVID-19 Dashboard</h1>
         <div class="header-info">
           <!-- Dark mode toggle button -->
-          <button class="btn btn--outline btn--sm" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <button
+            class="btn btn--outline btn--sm"
+            id="darkModeToggle"
+            title="Toggle dark mode"
+            aria-label="Toggle dark mode"
+          >
             <i class="fas fa-moon"></i>
           </button>
-          <!-- <button class="btn btn--secondary btn--sm" id="refreshBtn">
-            <i class="fas fa-sync-alt"></i> Refresh Data
-          </button> -->
         </div>
       </header>
 
@@ -31,9 +33,7 @@
             https://covid19dashboard.mohfw.gov.in/
           </a>
         </span>
-        <span>
-          <strong>Last Updated:</strong> <span id="lastUpdated"></span>
-        </span>
+        <span> <strong>Last Updated:</strong> <span id="lastUpdated"></span> </span>
       </section>
 
       <!-- Country Level Summary -->
@@ -46,7 +46,9 @@
             </div>
             <div class="country-stat-content">
               <span class="country-stat-label">Confirmed Cases</span>
-              <span class="country-stat-value" id="countryConfirmed">0</span>
+              <span class="country-stat-value" id="countryConfirmed">
+                0 <span class="country-stat-delta" id="countryConfirmedDelta"></span>
+              </span>
             </div>
           </div>
           <div class="country-stat-card active">
@@ -55,7 +57,9 @@
             </div>
             <div class="country-stat-content">
               <span class="country-stat-label">Active Cases</span>
-              <span class="country-stat-value" id="countryActive">0</span>
+              <span class="country-stat-value" id="countryActive">
+                0 <span class="country-stat-delta" id="countryActiveDelta"></span>
+              </span>
             </div>
           </div>
           <div class="country-stat-card recovered">
@@ -64,7 +68,9 @@
             </div>
             <div class="country-stat-content">
               <span class="country-stat-label">Recovered</span>
-              <span class="country-stat-value" id="countryRecovered">0</span>
+              <span class="country-stat-value" id="countryRecovered">
+                0 <span class="country-stat-delta" id="countryRecoveredDelta"></span>
+              </span>
             </div>
           </div>
           <div class="country-stat-card deaths">
@@ -73,18 +79,10 @@
             </div>
             <div class="country-stat-content">
               <span class="country-stat-label">Deaths</span>
-              <span class="country-stat-value" id="countryDeaths">0</span>
+              <span class="country-stat-value" id="countryDeaths">
+                0 <span class="country-stat-delta" id="countryDeathsDelta"></span>
+              </span>
             </div>
-          </div>
-        </div>
-        <div class="country-stats-footer">
-          <div class="new-cases-info">
-            <span class="new-label">New Cases (24h):</span>
-            <span class="new-value" id="countryNewCases">0</span>
-          </div>
-          <div class="new-deaths-info">
-            <span class="new-label">New Deaths (24h):</span>
-            <span class="new-value" id="countryNewDeaths">0</span>
           </div>
         </div>
       </section>

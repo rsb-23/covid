@@ -640,20 +640,11 @@ select.form-control {
   border-bottom: 1px solid var(--color-border);
 }
 
-.dashboard-header h1 {
-  color: var(--color-text);
-  margin: 0;
-}
-
 .header-info {
   display: flex;
   align-items: center;
   gap: var(--space-16);
-}
-
-.current-date {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
+  flex-shrink: 0;
 }
 
 /* Country level summary styles */
@@ -676,6 +667,12 @@ select.form-control {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-16);
+}
+
+@media (max-width: 600px) {
+  .country-stats-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 768px) {
@@ -780,36 +777,24 @@ select.form-control {
   color: #c0152f;
 }
 
-.country-stats-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--space-20);
-  padding-top: var(--space-16);
-  border-top: 1px solid var(--color-card-border-inner);
-}
-
-.new-cases-info,
-.new-deaths-info {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-}
-
-.new-label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.new-value {
+.country-stat-delta {
   font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
+  margin-left: 4px;
+  color: var(--color-text-secondary);
+  vertical-align: middle;
 }
 
-.new-cases-info .new-value {
+.country-stat-card.confirmed .country-stat-delta {
   color: #1fb8cd;
 }
-
-.new-deaths-info .new-value {
+.country-stat-card.active .country-stat-delta {
+  color: #ffc185;
+}
+.country-stat-card.recovered .country-stat-delta {
+  color: #21808d;
+}
+.country-stat-card.deaths .country-stat-delta {
   color: #c0152f;
 }
 
@@ -1134,13 +1119,17 @@ select.form-control {
 /* Responsive adjustments */
 @media (max-width: 767px) {
   .dashboard-header {
-    flex-direction: column;
-    gap: var(--space-16);
+    gap: var(--space-8);
     align-items: flex-start;
+    padding: var(--space-24) var(--space-8);
   }
-
-  .header-info {
+  .dashboard-header h1 {
+    font-size: var(--font-size-3xl);
+    flex: 1 1 auto;
+    min-width: 0;
     width: 100%;
+  }
+  .header-info {
     justify-content: space-between;
   }
 
@@ -1234,8 +1223,11 @@ select.form-control {
 
 /* Dashboard meta section (source and last updated) */
 .dashboard-meta-section {
-  margin-bottom: var(--space-24);
+  margin-bottom: var(--space-8);
   text-align: left;
+  align-items: center;
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .dashboard-meta-section strong {
