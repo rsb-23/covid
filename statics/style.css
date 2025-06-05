@@ -1208,3 +1208,26 @@ select.form-control {
     transform: translateY(0);
   }
 }
+
+/* Dark mode toggle button style */
+#darkModeToggle {
+  margin-left: var(--space-8);
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-lg);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+}
+
+#darkModeToggle:hover,
+#darkModeToggle:focus-visible {
+  background: var(--color-secondary-hover);
+  color: var(--color-primary);
+  outline: none;
+}

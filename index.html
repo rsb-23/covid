@@ -14,6 +14,10 @@
         <h1>COVID-19 Dashboard</h1>
         <div class="header-info">
           <span class="current-date" id="currentDate"></span>
+          <!-- Dark mode toggle button -->
+          <button class="btn btn--outline btn--sm" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+          </button>
           <!-- <button class="btn btn--secondary btn--sm" id="refreshBtn">
             <i class="fas fa-sync-alt"></i> Refresh Data
           </button> -->
@@ -137,6 +141,7 @@
     </div>
 
     <script src="statics/app.js"></script>
+    <script src="statics/util.js"></script>
     <!-- 100% privacy-first analytics -->
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript
