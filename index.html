@@ -13,7 +13,6 @@
       <header class="dashboard-header">
         <h1>COVID-19 Dashboard</h1>
         <div class="header-info">
-          <span class="current-date" id="currentDate"></span>
           <!-- Dark mode toggle button -->
           <button class="btn btn--outline btn--sm" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
             <i class="fas fa-moon"></i>
@@ -23,6 +22,19 @@
           </button> -->
         </div>
       </header>
+
+      <!-- Source and Last Updated Section -->
+      <section class="dashboard-meta-section">
+        <span>
+          <strong>Source:</strong>
+          <a href="https://covid19dashboard.mohfw.gov.in/" target="_blank" rel="noopener noreferrer">
+            https://covid19dashboard.mohfw.gov.in/
+          </a>
+        </span>
+        <span>
+          <strong>Last Updated:</strong> <span id="lastUpdated"></span>
+        </span>
+      </section>
 
       <!-- Country Level Summary -->
       <section class="dashboard-section country-summary-section">
@@ -136,7 +148,7 @@
 
       <!-- Footer -->
       <footer class="dashboard-footer">
-        <p>Last updated: <span id="lastUpdated"></span></p>
+        <p>&copy; 2025 COVID-19 Dashboard</p>
       </footer>
     </div>
 

@@ -1231,3 +1231,21 @@ select.form-control {
   color: var(--color-primary);
   outline: none;
 }
+
+/* Dashboard meta section (source and last updated) */
+.dashboard-meta-section {
+  margin-bottom: var(--space-24);
+  text-align: left;
+}
+
+.dashboard-meta-section strong {
+  font-weight: bold;
+}
+
+.dashboard-meta-section span {
+  display: inline-block;
+}
+
+.dashboard-meta-section span + span {
+  margin-left: 2em;
+}

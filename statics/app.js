@@ -48,7 +48,6 @@ class CovidDashboard {
     // Render all components
     this.renderCountrySummary();
     this.populateStateSelect();
-    this.renderCurrentDate();
     this.renderTopPerformers();
     this.renderDeathsList();
     this.renderWatchlist();
@@ -98,22 +97,6 @@ class CovidDashboard {
         option.textContent = state.state_name;
         select.appendChild(option);
       });
-  }
-
-  renderCurrentDate() {
-    const currentDateElement = document.getElementById("currentDate");
-    if (!currentDateElement) return;
-
-    const now = new Date();
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    currentDateElement.textContent = now.toLocaleDateString("en-US", options);
   }
 
   bindEvents() {
@@ -353,12 +336,14 @@ class CovidDashboard {
     if (!lastUpdatedElement) return;
 
     const now = new Date();
+    now.setHours(10, 0, 0, 0);
     const options = {
       year: "numeric",
       month: "short",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
+      hour12: true,
     };
     lastUpdatedElement.textContent = now.toLocaleDateString("en-US", options);
   }
