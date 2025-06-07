@@ -2,7 +2,7 @@ name: Daily COVID cases Data
 
 on:
   schedule:
-    - cron: "30 3 * * *" # Runs daily at 09:00 AM IST (03:30 UTC)
+    - cron: "30 4 * * *" # Runs daily at 10:00 AM IST (03:30 UTC)
   workflow_dispatch:
 
 jobs:
