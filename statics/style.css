@@ -1077,7 +1077,7 @@ select.form-control {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-12) var(--space-16);
+  padding: var(--space-12);
   background: var(--color-background);
   border: 1px solid var(--color-card-border-inner);
   border-radius: var(--radius-base);
@@ -1166,7 +1166,7 @@ select.form-control {
   }
 
   .death-item {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: var(--space-8);
   }
@@ -1237,8 +1237,3 @@ select.form-control {
   display: inline-block;
   white-space: nowrap;
 }
-
-.dashboard-meta-section span + span {
-  margin-left: 0;
-}
-

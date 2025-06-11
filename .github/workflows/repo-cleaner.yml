@@ -1,0 +1,16 @@
+name: Repo Cleaner
+
+on:
+  schedule:
+    - cron: "3 14 * * 3" # every Wednesday
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          retain_days: 10
+          keep_minimum_runs: 3

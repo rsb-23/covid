@@ -5,6 +5,8 @@ async function fetchAllRecords() {
   if (!response.ok) throw new Error("Network response was not ok");
   const data = await response.json();
   if (!Array.isArray(data) || data.length === 0) throw new Error("No records found");
+
+  data[14].state_name = data[14].state_name.replace(/\*+/, ""); // clean value
   todaysRecord = data;
 }
 
