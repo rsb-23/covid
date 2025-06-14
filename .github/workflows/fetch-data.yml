@@ -5,6 +5,9 @@ on:
     - cron: "30 4 * * *" # Runs daily at 10:00 AM IST (03:30 UTC)
   workflow_dispatch:
 
+env:
+  COMMIT_BRANCH: "gh-pages"
+
 jobs:
   fetch-and-commit:
     runs-on: ubuntu-latest
@@ -16,10 +19,10 @@ jobs:
         run: |
           curl -sSL "https://covid19dashboard.mohfw.gov.in/data/datanew.json" -o data/today.json
 
-      - name: Prepare gh-pages branch
+      - name: Prepare ${{ env.COMMIT_BRANCH }} branch
         run: |
-          git fetch origin gh-pages:gh-pages
-          git switch gh-pages
+          git fetch origin ${{ env.COMMIT_BRANCH }}:${{ env.COMMIT_BRANCH }}
+          git switch ${{ env.COMMIT_BRANCH }}
 
       - name: Configure git
         run: |
@@ -31,7 +34,7 @@ jobs:
           git add data/
           if ! git diff --cached --quiet; then
             git commit -m "chore: update COVID data (automated)"
-            git push
+            git push origin ${{ env.COMMIT_BRANCH }}
           else
             echo "No changes to commit"
           fi
