@@ -19,22 +19,10 @@ jobs:
         run: |
           curl -sSL "https://covid19dashboard.mohfw.gov.in/data/datanew.json" -o data/today.json
 
-      - name: Prepare ${{ env.COMMIT_BRANCH }} branch
-        run: |
-          git fetch origin ${{ env.COMMIT_BRANCH }}:${{ env.COMMIT_BRANCH }}
-          git switch ${{ env.COMMIT_BRANCH }}
-
-      - name: Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Commit data if changed
-        run: |
-          git add data/
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: update COVID data (automated)"
-            git push origin ${{ env.COMMIT_BRANCH }}
-          else
-            echo "No changes to commit"
-          fi
+      - name: Git push
+        uses: rsb-23/actions/git-push@main
+        with:
+          git_user: "gh-pages[bot]"
+          files: "data/"
+          commit_message: "chore: update COVID data (automated)"
+          branch: "gh-pages"
