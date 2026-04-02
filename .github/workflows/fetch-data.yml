@@ -1,4 +1,6 @@
 name: Daily COVID cases Data
+permissions:
+  contents: read
 
 on:
   schedule:
@@ -13,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: rsb-23/actions/checkout@main
 
       - name: Fetch latest COVID data
         run: |
